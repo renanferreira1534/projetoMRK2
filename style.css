@@ -1,24 +1,24 @@
-:root{
+:root {
     --dark-bg: #1a1a1a;
     --darker-bg: #121212;
     --accent: #ff6b6b;
     --text: #e0e0e0;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{
-    background-color:  var(--darker-bg);
+body {
+    background-color: var(--darker-bg);
     color: var(--text);
 }
 
 /* navigation */
-.navbar{
+.navbar {
     position: fixed;
     top: 0;
     width: 100%;
@@ -29,10 +29,10 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.logo{
+.logo {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text);
@@ -40,17 +40,17 @@ body{
     transition: transform 0.3s ease;
 }
 
-.logo:hover{
+.logo:hover {
     transform: scale(1.05);
     color: var(--accent);
 }
 
-.nav-links{
+.nav-links {
     display: flex;
     gap: 2.5rem;
 }
 
-.nav-links a{
+.nav-links a {
     text-decoration: none;
     color: var(--text);
     font-weight: 500;
@@ -58,7 +58,7 @@ body{
     padding: 0.5rem 0;
 }
 
-.nav-links a::after{
+.nav-links a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -69,66 +69,101 @@ body{
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover::after{
+.nav-links a:hover::after {
     width: 100%;
 }
 
-/* hero section */
-.hero{
+/* hero section com carrossel */
+.hero {
     margin-top: 100px;
-    padding: 8rem 5%;
+    padding: 4rem 5%;
     background: linear-gradient(45deg, #2d3436, #1a1a1a);
     text-align: center;
-    clip-path: polygon(0 0, 100% 0, 100% 90% 0 100%); /* listra preta no meio*/
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
 }
 
-/* hero section */
-.hero{
-    margin-top: 100px;
-    padding: 8rem 5%;
-    background: linear-gradient(45deg, #2d3436, #1a1a1a);
-    text-align: center;
-    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); /* listra preta no meio*/
+.carousel {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    height: 400px;
+    border-radius: 20px;
 }
 
-.hero h1{
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    animation: fadeIn 1s ease-out;
-    background: linear-gradient(to right, #ff6b6b, #ff8e8e);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
-/* products Section */
-.products{
+.carousel-slide {
+    min-width: 100%;
+    height: 400px;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* botões */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text);
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+    border-radius: 10px;
+}
+
+.carousel-button:hover {
+    background: var(--accent);
+    color: #000;
+}
+
+.carousel-button.prev {
+    left: 20px;
+}
+
+.carousel-button.next {
+    right: 20px;
+}
+
+/* products */
+.products {
     padding: 5rem 5%;
 }
 
-.product-grid{
+.product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.5rem;
     margin-top: 3rem;
 }
 
-.product-card{
+.product-card {
     background: var(--dark-bg);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0,3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
     cursor: pointer;
     position: relative;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.product-card:hover{
+.product-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(255,107,107,0.2);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
 }
 
-.product-image{
+.product-image {
     width: 100%;
     height: 300px;
     object-fit: cover;
@@ -136,98 +171,110 @@ body{
     filter: grayscale(20%);
 }
 
-.product-card:hover .product-image{
+.product-card:hover .product-image {
     transform: scale(1.05);
     filter: grayscale(0%);
 }
 
-.product-info{
+.product-info {
     padding: 1.5rem;
     position: relative;
     z-index: 1;
 }
 
-.product-title{
+.product-title {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--text);
 }
 
-.product-price{
+.product-price {
     color: var(--accent);
     font-weight: 700;
     font-size: 1.3rem;
 }
 
 /* footer */
-.footer{
+.footer {
     background: var(--dark-bg);
     padding: 4rem 5%;
     margin-top: 5rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footer-content{
+.footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 3rem;
 }
 
-.footer-section h3{
+.footer-section h3 {
     color: var(--accent);
     margin-bottom: 1.5rem;
 }
 
-.footer-links{
+.footer-links {
     list-style: none;
 }
 
-.footer-links li{
+.footer-links li {
     margin-bottom: 0.8rem;
 }
 
-.footer-links a{
-    color:  var(--text);
+.footer-links a {
+    color: var(--text);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.footer-links a:hover{
+.footer-links a:hover {
     color: var(--accent);
 }
 
-.social-icons{
+.social-icons {
     display: flex;
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
-.social-icons a{
+.social-icons a {
     color: var(--text);
     font-size: 1.5rem;
     transition: transform 0.3s ease;
 }
 
-.social-icons a:hover{
+.social-icons a:hover {
     transform: translateY(-5px);
     color: var(--accent);
 }
 
-/* animation */
-@keyframes fadeIn{
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* animação */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@media (max-width: 768px){
-    .nav-links{
+/* responsivo */
+@media (max-width: 768px) {
+    .nav-links {
         display: none;
     }
 
-    .hero h1{
-        font-size: 2.5rem;
+    .carousel {
+        height: 250px;
+    }
+
+    .carousel-slide {
+        height: 250px;
+    }
+
+    .carousel-slide img {
+        height: 250px;
     }
 }
-
-    
-
