@@ -13,7 +13,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="listar()">
 
     <!-- navigation -->
     <nav class="navbar">
@@ -21,8 +21,8 @@
         <!-- navigation -->
     <div class="topo-nav">
         <a class="active" href="#home">Home</a>
-        <a href="#oferta">Ofertas </a>
-        <a href="#contato">Contato</a>
+        <a href="oferta">Ofertas </a>
+        <a href="contato.html">Contato</a>
         <a class="icon1" href="carrinho"><img src="images/shopping.png"></a>
         <a class="icon2"href="contato"> <img src="images/perfil.png"></a>
         <input type="text" placeholder="Pesquisar..">
@@ -47,69 +47,7 @@
     <section class="products">
         <div class="product-grid">
 
-            <div class="product-card scroll-animation">
-                <img src="images/conjuntonike.PNG" class="product-image" alt="conjuntonike">
-                <div class="product-info">
-                    <h3 class="product-title">Nike Dri-Fit</h3>
-                    <p class="product-price">R$500,00</p>
-                </div>
-            </div>
-
-            <div class="product-card scroll-animation">
-                <img src="images/bone.png" class="product-image" alt="bone">
-                <div class="product-info">
-                    <h3 class="product-title">Boné motorsport</h3>
-                    <p class="product-price">R$220,00</p>
-                </div>
-            </div>
-
-            <div class="product-card scroll-animation">
-                <img src="images/conjuntonike3.PNG" class="product-image" alt="conjuntonike3">
-                <div class="product-info">
-                    <h3 class="product-title">Nike impermeavel</h3>
-                    <p class="product-price">R$600,00</p>
-                </div>
-            </div>
-
-            <div class="product-card scroll-animation">
-                <img src="images/conjuntopuma.PNG" class="product-image" alt="conjuntopuma">
-                <div class="product-info">
-                    <h3 class="product-title">Conjunto puma</h3>
-                    <p class="product-price">R$359,99</p>
-                </div>
-            </div>
-
-            <div class="product-card scroll-animation">
-                <img src="images/chinelonike.PNG" class="product-image" alt="chinelonike">
-                <div class="product-info">
-                    <h3 class="product-title">Slide Nike</h3>
-                    <p class="product-price">R$121,00</p>
-                </div>
-            </div>
-
-            <div class="product-card scroll-animation">
-                <img src="images/calçcaraul.PNG" class="product-image" alt="calçcaraul">
-                <div class="product-info">
-                    <h3 class="product-title">Calça jogador</h3>
-                    <p class="product-price">R$150,00</p>
-                </div>
-            </div>
-
-            <div class="product-card scroll-animation">
-                <img src="images/bermanike.png" class="product-image" alt="bermanike">
-                <div class="product-info">
-                    <h3 class="product-title">Bermuda Nike</h3>
-                    <p class="product-price">R$300,00</p>
-                </div>
-            </div>
-
-            <div class="product-card scroll-animation">
-                <img src="images/bonelacoste.png" class="product-image" alt="bonelacoste">
-                <div class="product-info">
-                    <h3 class="product-title">Boné Lacoste</h3>
-                    <p class="product-price">R$390,00</p>
-                </div>
-            </div>
+           
         </div>
     </section>
 
@@ -166,5 +104,6 @@
 
         window.addEventListener('resize', updateCarousel);
     </script>
+    <script src="js/back.js"></script>
 </body>
 </html>
