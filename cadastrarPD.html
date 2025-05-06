@@ -1,23 +1,16 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produto</title>
-    <link rel="stylesheet" href="style-cadastro.css">
+    <link rel="stylesheet" href="style-cadastroPD.css">
 </head>
 <body>
     <div class="container">
         <h1>Cadastro de Produto</h1>
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form onsubmit="return false" method="post" enctype="multipart/form-data">
             <label for="nome">Nome do Produto</label>
             <input type="text" id="nome" name="nome" required>
 
@@ -26,7 +19,7 @@
                 <option value="">Selecione</option>
                 <option value="camiseta">Camiseta</option>
                 <option value="calça">Calça</option>
-                <option value="vestido">Vestido</option>
+                <option value="vestido">calçados</option>
                 <option value="acessorio">Acessório</option>
             </select>
 
@@ -48,11 +41,9 @@
             <label for="imagem">Imagem do Produto</label>
             <input type="file" id="imagem" name="imagem" accept="image/*" required>
 
-            <button type="submit">Cadastrar Produto</button>
+            <button type="submit" onclick="cadastrar()">Cadastrar Produto</button>
         </form>
     </div>
-</body>
-</html>
-
+    <script src="projetoMRK2/js/back.js"></script>
 </body>
 </html>
