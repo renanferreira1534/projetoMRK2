@@ -307,7 +307,7 @@ body {
     float: right;
 }
 
-.topo-nav input[type=text]{
+/*.topo-nav input[type=text]{
     float: right;
     padding: 5px;
     border: none;
@@ -329,6 +329,43 @@ body {
     .topo-nav input[type=text] {
         border: 1px solid #ccc;
       }
-    }
+    }*/
 
+
+    /* --------barra de pesquisa--------------- */
+
+    .input-button-container {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        background-color: #fff;
+        
+        
+      }
+      
+      .input-button-container input {
+        flex-grow: 1;
+        border: none;
+        padding: 8px;
+        outline: none;
+        font-size: 14px;
+        
+      }
+      
+      .input-button-container button {
+        background: #fff;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #333;
+        border-radius: 15px;
+        
+      }
+      
+      .input-button-container button:hover {
+        background-color: #f0f0f0;
+      }
+      
 
