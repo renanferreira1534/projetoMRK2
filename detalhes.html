@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja MRK</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="detalhes()">
+
+    <!-- navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">IMPORTS MRK</a>
+        <!-- navigation -->
+    <div class="topo-nav">
+        <a class="active" href="#home">Home</a>
+        <a class="Ofertas" href="oferta.html">Ofertas</a>
+        <a class="lancamentos" href="lancamentos.html">Lançamentos</a>
+        <a class="icon1" href="carrinho.html"><img src="images/shopping.png"></a>
+        <a class="icon2" href="perfil.html"> <img src="images/perfil.png"></a>
+        <div class="input-button-container">
+            <input type="text" placeholder="Pesquisar...">
+            <button type="button" class="search-btn">🔍</button>
+          </div>
+        </div>
+      </nav>
+
+    <!-- hero section com carrossel -->
+    <section class="hero">
+        <div class="carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide"><img src="images/promocoes1.png"></div>
+                <div class="carousel-slide"><img src="images/carrosel.png" alt="Slide 2"></div>
+                <div class="carousel-slide"><img src="images/ChatGPT Image 23 de abr. de 2025, 10_51_53.png" alt="Slide 3"></div>
+            </div>
+            <button class="carousel-button prev">&#10094;</button>
+            <button class="carousel-button next">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- products section -->
+    <section class="products">
+        <div class="product-grid">
+
+           
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Loja MRK</h3>
+                <p>Loja direcionada para marcas Importadas e Nacionais</p>
+            </div>
+            <div class="footer-section">
+                <h3>Coleção</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Masculino</a></li>
+                    <li><a href="#">Feminino</a></li>
+                    <li><a href="#">Acessorios</a></li>
+                    <li><a href="#">Promoções</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Entre em contato</h3>
+                <div class="social-icons"> <!--icones de contato-->
+                    <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                    <a href="#"><i class="fa-solid fa-phone"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript do carrossel -->
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextButton = document.querySelector('.carousel-button.next');
+        const prevButton = document.querySelector('.carousel-button.prev');
+
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel();
+        });
+
+        window.addEventListener('resize', updateCarousel);
+    </script>
+    <script src="js/back.js"></script>
+</body>
+</html>
