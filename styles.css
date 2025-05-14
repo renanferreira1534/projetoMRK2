@@ -6,9 +6,10 @@
     padding: 0;
 }
 
-body{
-    background: grey;
-    font-family: 'lato', sans-serif;
+body {
+  background-color: var(--darker-bg);
+  color: var(--text);
+  font-family: 'lato', sans-serif;
 }
 
 header{
@@ -43,7 +44,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 2200px;
     margin: 0 auto;
     padding: 1rem 2rem;
 }
@@ -99,5 +100,109 @@ footer {
     margin: 0.3rem 0;
   }
   
+  :root {
+    --dark-bg: #1a1a1a;
+    --darker-bg: #121212;
+    --accent: #ff6b6b;
+    --text: #e0e0e0;
+}
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+/* navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    background-color: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    color: var(--accent);
+}
+
+.input-button-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: #fff;
+  
+  
+}
+
+.input-button-container input {
+  flex-grow: 1;
+  border: none;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  
+}
+
+.input-button-container button {
+  background: #fff;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  border-radius: 15px;
+  
+}
+
+.input-button-container button:hover {
+  background-color: #f0f0f0;
+}
+
+/* topo de menu e pesquisa  */
+.topo-nav a{
+  float: left;
+  display: block;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration:none;
+  font-size: 17px;
+ 
+  
+}
+.topo-nav a:hover {
+  transform: scale(1.05);
+  color: var(--accent);
+  text-decoration: none;
+  transition: transform 0.5s ease;
+}
+
+
+.topo-nav a.icon1{
+  float: right;
+  margin-right: 5px;
+}
+.topo-nav a.icon2{ 
+  float: right;
+}
  
