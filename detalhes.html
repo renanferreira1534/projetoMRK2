@@ -1,105 +1,263 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja MRK</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Loja MRK</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --dark-bg: #1a1a1a;
+    --darker-bg: #121212;
+    --accent: #ff6b6b;
+    --text: #e0e0e0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+  }
+
+  body {
+    background-color: var(--darker-bg);
+    color: var(--text);
+    padding-top: 60px;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    background-color: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.05);
+    color: var(--accent);
+  }
+
+  .ver-produto {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px 20px;
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(255 255 255 / 0.05);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.2);
+  }
+
+  .col-2, .col-3 {
+    flex: 1 1 400px;
+    color: var(--text);
+  }
+
+  .col-2 img#ProdutoImg {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 0 10px var(--accent);
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .col-2 img#ProdutoImg:hover {
+    box-shadow: 0 0 20px var(--accent);
+  }
+
+  .img-min {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .img-min img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .img-min img:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+  }
+
+  .col-3 p {
+    font-size: 14px;
+    color: #bbb;
+  }
+
+  .col-3 h1 {
+    font-size: 30px;
+    margin: 15px 0 10px 0;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .col-3 h4 {
+    font-size: 26px;
+    color: var(--accent);
+    margin: 20px 0;
+  }
+
+  select {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: var(--dark-bg);
+    color: var(--text);
+    margin: 20px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+
+  select:hover,
+  select:focus {
+    border-color: var(--accent);
+    outline: none;
+  }
+
+  input[type="number"] {
+    width: 70px;
+    height: 44px;
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 12px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    background-color: var(--dark-bg);
+    color: var(--text);
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="number"]:focus {
+    border-color: var(--accent);
+    outline: none;
+  }
+
+  .bnt {
+    padding: 14px 24px;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 700;
+  }
+
+  .bnt:hover {
+    background-color: #ff4d4d;
+  }
+
+  .col-3 h3 {
+    margin-top: 40px;
+    font-size: 20px;
+    color: var(--text);
+  }
+
+  .col-3 p:last-of-type {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ccc;
+  }
+
+  @media (max-width: 768px) {
+    .ver-produto {
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+    }
+
+    .col-3 {
+      text-align: center;
+    }
+
+    select {
+      margin: 20px auto;
+    }
+
+    input[type="number"] {
+      margin: 0 auto 10px auto;
+      display: block;
+    }
+    
+  }
+</style>
 </head>
-<body onload="detalhes()">
+<body>
 
-    <!-- navigation -->
-    <nav class="navbar">
-        <a href="#" class="logo">IMPORTS MRK</a>
-        <!-- navigation -->
-    <div class="topo-nav">
-        <a class="active" href="#home">Home</a>
-        <a class="Ofertas" href="oferta.html">Ofertas</a>
-        <a class="lancamentos" href="lancamentos.html">Lançamentos</a>
-        <a class="icon1" href="carrinho.html"><img src="images/shopping.png"></a>
-        <a class="icon2" href="perfil.html"> <img src="images/perfil.png"></a>
-        <div class="input-button-container">
-            <input type="text" placeholder="Pesquisar...">
-            <button type="button" class="search-btn">🔍</button>
-          </div>
-        </div>
-    </nav>
+<nav class="navbar">
+  <a href="#" class="logo">IMPORTS MRK</a>
+</nav>
 
-    
+<div class="ver-produto">
+  <div class="col-2">
+    <img src="https://images.tcdn.com.br/img/img_prod/275189/camisa_azul_royal_100_poliester_para_sublimacao_m_2701_1_20200722153204.jpg" alt="Camisa" id="ProdutoImg" />
 
-    
+    <div class="img-min">
+      <img src="https://images.tcdn.com.br/img/img_prod/809258/camiseta_azul_marinho_malha_pv_manga_curta_gola_redonda_231_1_95af64c3015990678b15e9bd52eca679.jpg" alt="" />
+      <img src="https://static.netshoes.com.br/produtos/camiseta-masculina-dry-protecao-solar-uv-termica-academia-treino-esporte-camisa-praia/42/3R2-0050-342/3R2-0050-342_zoom1.jpg?ts=1665156947" alt="" />
+      <img src="https://a-static.mlcdn.com.br/280x210/kit-2-camisetas-masculina-basica-dry-fit-academia-uv-50-premium/panelassaojose/f2a81aecf12111eebe214201ac185034/703a16064f5750d96f8a933da59b0ce0.jpeg" alt="" />
+      <img src="https://images.tcdn.com.br/img/img_prod/275189/camisa_azul_royal_100_poliester_para_sublimacao_m_2701_1_20200722153204.jpg" alt="" />
+    </div>
+  </div>
 
+  <div class="col-3">
+    <p>Categoria: Camisas</p>
+    <h1>Camisa Azul Royal - Poliester</h1>
+    <h4>R$ 150,00</h4>
 
+    <form>
+      <select>
+        <option>Selecione o tamanho</option>
+        <option>P</option>
+        <option>M</option>
+        <option>G</option>
+        <option>GG</option>
+        <option>XG</option>
+      </select>
 
-    <!-- products section -->
-    <section class="products">
-        <div class="product-grid">
+      <input type="number" value="1" min="1" />
+      <button type="submit" class="bnt">Adicionar ao carrinho</button>
+    </form>
 
-           
-        </div>
-    </section>
+    <h3>Descrição</h3>
+    <p>
+      Camisa azul royal 100% poliéster, ideal para sublimação e personalização. Leve,
+      confortável e perfeita para atividades esportivas ou uso casual. Disponível em todos os tamanhos.
+    </p>
+  </div>
+</div>
 
-    <!-- footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Loja MRK</h3>
-                <p>Loja direcionada para marcas Importadas e Nacionais</p>
-            </div>
-            <div class="footer-section">
-                <h3>Coleção</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Masculino</a></li>
-                    <li><a href="#">Feminino</a></li>
-                    <li><a href="#">Acessorios</a></li>
-                    <li><a href="#">Promoções</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Entre em contato</h3>
-                <div class="social-icons"> <!--icones de contato-->
-                    <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                    <a href="#"><i class="fa-solid fa-phone"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript do carrossel -->
-    <script>
-        const track = document.querySelector('.carousel-track');
-        const slides = Array.from(track.children);
-        const nextButton = document.querySelector('.carousel-button.next');
-        const prevButton = document.querySelector('.carousel-button.prev');
-
-        let currentIndex = 0;
-
-        function updateCarousel() {
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        }
-
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
-        });
-
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel();
-        });
-
-        window.addEventListener('resize', updateCarousel);
-    </script>
-    <script src="js/back.js"></script>
 </body>
 </html>
