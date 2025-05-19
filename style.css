@@ -307,7 +307,7 @@ body {
     float: right;
 }
 
-/*.topo-nav input[type=text]{
+/* .topo-nav input[type=text]{
     float: right;
     padding: 5px;
     border: none;
@@ -329,7 +329,7 @@ body {
     .topo-nav input[type=text] {
         border: 1px solid #ccc;
       }
-    }*/
+    } */
 
 
     /* --------barra de pesquisa--------------- */
@@ -338,8 +338,8 @@ body {
         display: flex;
         align-items: center;
         border: 1px solid #ccc;
-        border-radius: 15px;
-        background-color: #fff;
+        border-radius: 10px;
+        background-color: #ffffff;
         
         
       }

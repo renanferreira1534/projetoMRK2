@@ -77,13 +77,10 @@
     max-width: 500px;
     border-radius: 10px;
     object-fit: cover;
-    box-shadow: 0 0 10px var(--accent);
     transition: box-shadow 0.3s ease;
     cursor: pointer;
   }
-  .col-2 img#ProdutoImg:hover {
-    box-shadow: 0 0 20px var(--accent);
-  }
+
 
   .img-min {
     display: flex;
@@ -214,13 +211,13 @@
   }
 </style>
 </head>
-<body>
+<body onload="detalhes()">
 
 <nav class="navbar">
   <a href="#" class="logo">IMPORTS MRK</a>
 </nav>
 
-<div class="ver-produto">
+<div class="ver-produto" onclick="detalhes">
   <div class="col-2">
     <img src="https://images.tcdn.com.br/img/img_prod/275189/camisa_azul_royal_100_poliester_para_sublimacao_m_2701_1_20200722153204.jpg" alt="Camisa" id="ProdutoImg" />
 
@@ -259,5 +256,6 @@
   </div>
 </div>
 
+<script src="js/back.js"></script>
 </body>
 </html>
