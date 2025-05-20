@@ -19,8 +19,35 @@ function listar(){
     .catch((e)=>console.error(e))
 }
 
+
+function pesquisar(){
+    fetch("http://127.0.0.1:3000/produto/pesquisar/"+document.getElementById("input-search").value)
+    .then((rs)=>rs.json())
+    .then((dados)=>{
+       const product_grid=document.getElementsByClassName("product-grid")[0]
+       let produtos=""
+       dados.msg.map((prod)=>{
+        produtos+=`<a href="detalhes.html?id_produto=${prod.id_produto}">
+        <div class="product-card scroll-animation">
+                <img src="${prod.foto}" class="product-image" alt="conjuntonike">
+                <div class="product-info">
+                    <h3 class="product-title">${prod.nome}</h3>
+                    <p class="product-price">${prod.preco}</p>
+                </div>
+            </div> </a>`
+       })
+       product_grid.innerHTML=produtos
+    })
+    .catch((e)=>console.error(e))
+}
+
 function detalhes(){
-    fetch("http://127.0.0.1:3000/produto/detalhes/2")
+
+    let dados = window.location.search
+    console.log(dados[2].substring(6,dados[2].length))
+
+
+    fetch("http://127.0.0.1:3000/produto/detalhes/"+dados)
     .then((rs)=>rs.json())
     .then((dados)=>{
        const product_grid=document.getElementsByClassName("product-grid")[0]
