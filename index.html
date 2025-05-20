@@ -36,7 +36,7 @@
     <section class="hero">
         <div class="carousel">
             <div class="carousel-track">
-                <div class="carousel-slide"><img src="images/promocoes1.png"></div>
+                <div class="carousel-slide"><img src="images/Design sem nome (1).png"></div>
                 <div class="carousel-slide"><img src="images/carrosel.png" alt="Slide 2"></div>
                 <div class="carousel-slide"><img src="images/ChatGPT Image 23 de abr. de 2025, 10_51_53.png" alt="Slide 3"></div>
             </div>
@@ -106,6 +106,13 @@
         });
 
         window.addEventListener('resize', updateCarousel);
+
+        // Faz o carrossel passar sozinho a cada 3 segundos
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        }, 3000); // 3000ms = 3 segundos
+
     </script>
     <script src="js/back.js"></script>
 </body>
