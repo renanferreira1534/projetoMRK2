@@ -368,4 +368,51 @@ body {
         background-color: #f0f0f0;
       }
       
+.navegacao{ /*body*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
+.cont{
+    width: 420px;
+    background-color:transparent;
+    border: 2px solid rgb(223, 24, 24);
+    color: #f0f0f0;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.cont h1{
+    font-size: 36px;
+    text-align: center;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255) ;
+    border: 2px solid;
+    border-radius: 40px;
+    outline: none;
+    font-size: 16px;
+    color: #af2727;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+    color: #000;
+}
+
+.input-box i{
+    position: absolute;
+    right: 20px;
+}
