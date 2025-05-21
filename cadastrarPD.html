@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,50 +7,87 @@
     <link rel="stylesheet" href="style-cadastroPD.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Cadastro de Produto</h1>
-        <form onsubmit="return false" method="post" enctype="multipart/form-data">
-            <label for="nome">Nome do Produto</label>
-            <input type="text" id="nome" name="nome" required>
-
-            <label for="categoria">Categoria</label>
-            <select id="categoria" name="categoria" required>
-                <option value="">Selecione</option>
-                <option value="camiseta">Camiseta</option>
-                <option value="calça">Calça</option>
-                <option value="vestido">calçados</option>
-                <option value="acessorio">Acessório</option>
-            </select>
-
-            <label for="tamanho">Tamanho</label>
-            <select id="tamanho" name="tamanho" required>
-                <option value="">Selecione</option>
-                <option value="P">P</option>
-                <option value="M">M</option>
-                <option value="G">G</option>
-                <option value="GG">GG</option>
-            </select>
-
-            <label for="genero">Genero</label>
-            <select id="genero" name="genero" required>
-                <option value="">Selecione</option>
-                <option value="P">masculino</option>
-                <option value="M">Feminino</option>
-                <option value="G">unisex</option>
-               
-            </select>
-
-            <label for="preco">Preço (R$)</label>
-            <input type="number" id="preco" name="preco" step="0.01" required>
-
-            <label for="descricao">Descrição</label>
-            <textarea id="descricao" name="descricao" rows="4" required></textarea>
-
-            <label for="imagem">Imagem do Produto</label>
-            <input type="file" id="imagem" name="imagem" accept="image/*" required>
-
-            <button type="submit" onclick="cadastrar()">Cadastrar Produto</button>
-        </form>
+    <form onsubmit="return false" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="nome">Nome do Produto</label>
+          <input type="text" id="nome" name="nome" required>
+        </div>
+      
+        <div class="form-group">
+          <label for="categoria">Categoria</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Selecione</option>
+            <option value="camiseta">Camiseta</option>
+            <option value="calça">Calça</option>
+            <option value="vestido">Calçados</option>
+            <option value="acessorio">Acessório</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="tamanho">Tamanho</label>
+          <select id="tamanho" name="tamanho" required>
+            <option value="">Selecione</option>
+            <option value="P">P</option>
+            <option value="M">M</option>
+            <option value="G">G</option>
+            <option value="GG">GG</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="genero">Gênero</label>
+          <select id="genero" name="genero" required>
+            <option value="">Selecione</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+            <option value="unisex">Unisex</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+          <label for="preco">Preço (R$)</label>
+          <input type="number" id="preco" name="preco" step="0.01" required>
+        </div>
+      
+        <div class="form-group">
+          <label for="estoque">Quantidade em Estoque</label>
+          <input type="number" id="estoque" name="estoque" required>
+        </div>
+      
+        <div class="form-group full-width">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" name="descricao" required></textarea>
+        </div>
+      
+        <div class="form-group">
+          <label for="imagem">Imagem Principal</label>
+          <input type="file" id="imagem" name="imagem" accept="image/*" required>
+        </div>
+      
+        <div class="form-group">
+          <label for="foto1">Foto Extra 1</label>
+          <input type="file" id="foto1" name="foto1" accept="image/*">
+        </div>
+      
+        <div class="form-group">
+          <label for="foto2">Foto Extra 2</label>
+          <input type="file" id="foto2" name="foto2" accept="image/*">
+        </div>
+      
+        <div class="form-group">
+          <label for="foto3">Foto Extra 3</label>
+          <input type="file" id="foto3" name="foto3" accept="image/*">
+        </div>
+      
+        <div class="form-group">
+          <label for="foto4">Foto Extra 4</label>
+          <input type="file" id="foto4" name="foto4" accept="image/*">
+        </div>
+      
+        <button type="submit" onclick="cadastrar()">Cadastrar Produto</button>
+      </form>
+      
     </div>
     <script src="projetoMRK2/js/back.js"></script>
 </body>

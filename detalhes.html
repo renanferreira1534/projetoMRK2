@@ -212,30 +212,32 @@
 </style>
 </head>
 <body onload="detalhes()">
+  >
 
 <nav class="navbar">
   <a href="#" class="logo">IMPORTS MRK</a>
 </nav>
 
-<<<<<<< HEAD
-=======
-<div class="ver-produto" onclick="detalhes">
+<div class="ver-produto">
   <div class="col-2">
-    <img src="https://images.tcdn.com.br/img/img_prod/275189/camisa_azul_royal_100_poliester_para_sublimacao_m_2701_1_20200722153204.jpg" alt="Camisa" id="ProdutoImg" />
+<!-- .col-2 (Imagem principal + miniaturas) -->
+<div class="col-2">
+  <img src="" alt="Imagem do produto" id="ProdutoImg" />
+  <div class="img-min" id="galeria-imgs"></div>
+</div>
 
-    <div class="img-min">
-      <img src="https://images.tcdn.com.br/img/img_prod/809258/camiseta_azul_marinho_malha_pv_manga_curta_gola_redonda_231_1_95af64c3015990678b15e9bd52eca679.jpg" alt="" />
-      <img src="https://static.netshoes.com.br/produtos/camiseta-masculina-dry-protecao-solar-uv-termica-academia-treino-esporte-camisa-praia/42/3R2-0050-342/3R2-0050-342_zoom1.jpg?ts=1665156947" alt="" />
-      <img src="https://a-static.mlcdn.com.br/280x210/kit-2-camisetas-masculina-basica-dry-fit-academia-uv-50-premium/panelassaojose/f2a81aecf12111eebe214201ac185034/703a16064f5750d96f8a933da59b0ce0.jpeg" alt="" />
-      <img src="https://images.tcdn.com.br/img/img_prod/275189/camisa_azul_royal_100_poliester_para_sublimacao_m_2701_1_20200722153204.jpg" alt="" />
-    </div>
+
   </div>
 
   <div class="col-3">
-    <p>Categoria: Camisas</p>
-    <h1>Camisa Azul Royal - Poliester</h1>
-    <h4>R$ 150,00</h4>
->>>>>>> 3150ff195525a9e8b7b377029998ff981d231444
+    <!-- Dentro da col-3 -->
+<p id="categoria">Categoria: </p>
+<h1 id="nome-produto">Nome do Produto</h1>
+<h4 id="preco-produto">R$ 0,00</h4>
+<h3>Descrição</h3>
+<p id="descricao-produto">Descrição do produto aqui.</p>
+
+
 
     <form>
       <select>
@@ -251,13 +253,8 @@
       <button type="submit" class="bnt">Adicionar ao carrinho</button>
     </form>
 
-    <h3>Descrição</h3>
-    <p>
-      Camisa azul royal 100% poliéster, ideal para sublimação e personalização. Leve,
-      confortável e perfeita para atividades esportivas ou uso casual. Disponível em todos os tamanhos.
-    </p>
-  </div>
-</div>
+  
+    </div>
 
 <script src="js/back.js"></script>
 </body>
