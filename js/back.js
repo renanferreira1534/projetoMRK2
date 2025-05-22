@@ -5,9 +5,9 @@ function listar(){
        const product_grid=document.getElementsByClassName("product-grid")[0]
        let produtos=""
        dados.msg.map((prod)=>{
-        produtos+=`<a href="detalhes.html?id_produto=${prod.id_produto}">
+        produtos+=`<a href="detalhes.html?id_produto=${prod.id}">
         <div class="product-card scroll-animation">
-                <img src="${prod.foto}" class="product-image" alt="conjuntonike">
+                <img src="${prod.imagem}" class="product-image" alt="conjuntonike">
                 <div class="product-info">
                     <h3 class="product-title">${prod.nome}</h3>
                     <p class="product-price">${prod.preco}</p>
@@ -43,7 +43,7 @@ function pesquisar(){
 
 function detalhes() {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id_produto");
+    const id = urlParams.get("id");
   
     if (!id) {
       console.error("ID do produto não encontrado na URL.");
@@ -58,10 +58,11 @@ function detalhes() {
           return;
         }
   
-        const prod = dados.msg[0];
+        console.log= dados.msg;
+        
   
         // Preenche informações
-        document.getElementById("ProdutoImg").src = prod.foto || "";
+        document.getElementById("ProdutoImg").src = prod.imagem || "";
         document.getElementById("nome-produto").textContent = prod.nome || "Sem nome";
         document.getElementById("preco-produto").textContent = "R$ " + (prod.preco || "0,00");
         document.getElementById("categoria").textContent = "Categoria: " + (prod.categoria || "Indefinida");
@@ -118,8 +119,13 @@ function cadastrar(){
             descricao: descricao.value,
             preco: preco.value,
             tamanho: tamanho.value,
-            foto:imagem.value,
-            categoria:categoria.value
+            imagem:imagem.value,
+            categoria:categoria.value,
+            estoque:estoque.value,
+            foto1:foto1.value,
+            foto2:foto2.value,
+            foto3:foto3.value,
+            foto4:foto4.value
         })
     })
     .then((res)=>res.json())
