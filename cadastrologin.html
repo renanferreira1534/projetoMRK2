@@ -22,30 +22,31 @@
     </nav>
 
     <main class="cont">
-        <form>
-            <h1>Cadastre-se MRK</h1>
-            <div class="input-box">
-                <input placeholder="E-mail" type="email"> 
-                <i class="bx bxs-user"></i>
-            </div>
-            <div class="input-box">
-                <input placeholder="Senha" type="password">
-                <i class="bx bxs-lock-alt"></i>
-            </div>
-            <div class="input-box">
-                <input placeholder="Cpf" type="cpf">
-                <i class="bx bxs-cpf"></i>
-            </div>
-            <div class="input-box">
-                <input placeholder="Nome de usuario" type="usuario">
-                <i class="bx bxs-usuario"></i>
-            </div>
-
-            <button type="submit">Login</button>
+            <form method="POST" action="http://127.0.0.1:3000/cadastrar">
+                <h1>Cadastre-se MRK</h1>
+            
+                <div class="input-box">
+                    <input name="email" placeholder="E-mail" type="email" required> 
+                    <i class="bx bxs-user"></i>
+                </div>
+            
+                <div class="input-box">
+                    <input name="senha" placeholder="Senha" type="password" required>
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+            
+                <div class="input-box">
+                    <input name="usuario" placeholder="Nome de usuário" type="text" required>
+                    <i class="bx bxs-user"></i>
+                </div>
+            
+                <button type="submit">Cadastrar</button>
+            </form>
+            
 
 
             
-        </form>
+        
     </main>
 </body>
 </html>
