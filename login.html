@@ -1,53 +1,94 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Font Awesome -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login MRK</title>
 </head>
-    
 <body class="navegacao">
-    <!-- navigation -->
     <nav class="navbar">
         <a href="index.html" class="logo">IMPORTS MRK</a>
-        <!-- navigation -->
-    <div class="topo-nav">
-        <a class="active" href="index.html">Home</a>
+        <div class="topo-nav">
+            <a class="active" href="index.html">Home</a>
         </div>
     </nav>
 
     <main class="cont">
-        <form>
+        <form id="loginForm">
             <h1>Login MRK</h1>
+
             <div class="input-box">
-                <input placeholder="Usuario" type="email"> 
+                <input name="usuario" placeholder="Usuário" type="text" required />
                 <i class="bx bxs-user"></i>
             </div>
+
             <div class="input-box">
-                <input placeholder="Senha" type="password">
+                <input name="senha" placeholder="Senha" type="password" required />
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
             <div class="remeber-forgot">
                 <label>
-                <input type="checkbox">
-                lembrar minha senhas
-            </label>
-            <a href="#">Esqueci minha senha></a>
+                    <input type="checkbox" />
+                    Lembrar minha senha
+                </label>
+                <a href="#">Esqueci minha senha &gt;</a>
             </div>
 
             <button type="submit">Login</button>
 
+            <div id="msg" style="margin-top: 10px; color: red;"></div>
 
             <div class="register-link">
-                <p>nao tem uma conta? <a href="cadastrologin.html">Cadastre-se></a></p>
+                <p>Não tem uma conta? <a href="cadastrologin.html">Cadastre-se &gt;</a></p>
             </div>
         </form>
     </main>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const msg = document.getElementById('msg');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // prevenir reload da página
+
+            msg.textContent = ''; // limpa mensagens anteriores
+
+            const data = {
+                usuario: form.usuario.value,
+                senha: form.senha.value,
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:3000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    msg.style.color = 'green';
+                    msg.textContent = 'Login realizado com sucesso! Redirecionando...';
+
+                    // Exemplo: redirecionar para outra página após 2s
+                    setTimeout(() => {
+                        window.location.href = 'index.html'; // ajuste para sua página
+                    }, 2000);
+
+                } else {
+                    msg.style.color = 'red';
+                    msg.textContent = result.msg || 'Usuário ou senha inválidos.';
+                }
+            } catch (error) {
+                msg.style.color = 'red';
+                msg.textContent = 'Erro na comunicação com o servidor.';
+            }
+        });
+    </script>
 </body>
 </html>
