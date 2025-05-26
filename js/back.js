@@ -42,8 +42,9 @@ function pesquisar(){
 }
 
 function detalhes() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id");
+    const urlParams = window.location.search;
+    const id = urlParams.substring(12,urlParams.length)
+    console.log(id)
   
     if (!id) {
       console.error("ID do produto não encontrado na URL.");
@@ -62,11 +63,11 @@ function detalhes() {
         
   
         // Preenche informações
-        document.getElementById("ProdutoImg").src = prod.imagem || "";
-        document.getElementById("nome-produto").textContent = prod.nome || "Sem nome";
-        document.getElementById("preco-produto").textContent = "R$ " + (prod.preco || "0,00");
-        document.getElementById("categoria").textContent = "Categoria: " + (prod.categoria || "Indefinida");
-        document.getElementById("descricao-produto").textContent = prod.descricao || "Sem descrição.";
+        document.getElementById("ProdutoImg").src = dados.msg[0].imagem || "";
+        document.getElementById("nome-produto").textContent = dados.msg[0].nome || "Sem nome";
+        document.getElementById("preco-produto").textContent = "R$ " + (dados.msg[0].preco || "0,00");
+        document.getElementById("categoria").textContent = "Categoria: " + (dados.msg[0].categoria || "Indefinida");
+        document.getElementById("descricao-produto").textContent = dados.msg[0].descricao || "Sem descrição.";
   
         // Galeria
         const galeria = document.getElementById("galeria-imgs");
