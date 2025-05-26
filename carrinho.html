@@ -41,49 +41,10 @@
         </div>
     </main>
     <table class="cart-table">
-        <tr>
-          <td class="product-image">
-            <img src="images/bermanike.png" alt="Produto 1">
-          </td>
-          <td class="product-details">
-            <h3>Bermuda Nike Dri-fit</h3>
-            <p>Preço: R$ 99,99</p>
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" nam="" id="combo" value="1">
-            <p>Total: R$ 119,99</p>
-          </td>
-        </tr>
-        <tr>
-          <td class="product-image">
-            <img src="images/bonelacoste.png" alt="Produto 2">
-          </td>
-          <td class="product-details">
-            <h3>Boné Lacoste</h3>
-            <p>Preço: R$ 349,90</p>
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" nam="" id="combo" value="1">
-            <p>Total: R$ 699,80</p>        
-          </td>
-        </tr>
-        <tr>
-
-          <td class="product-image">
-            <img src="images/chinelonike.PNG" alt="Produto 3">
-          </td>
-          <td class="product-details">
-            <h3>Snekers Nike</h3>
-            <p>Preço: R$ 199,90</p>
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" nam="" id="combo" value="1">
-            <p>Total: R$ 199,90</p>
-          </td>
-        </tr>
+      
       </table>
       <aside class="cart-summary"> <!--aqui começa o quadradinho do finalizar compra-->
         <div class="summary-content">
-            <img src="images/bermanike.png" alt="Bandeira" class="summary-image">
-            
-
             <div class="summary-total">
                 <span>Total:</span>
                 <strong>R$ 399,90</strong>
@@ -94,6 +55,72 @@
         </div>
     </aside><!--aqui termina o quadradinho do finalizar compra-->
     
-    <footer></footer>
+    <script>
+      function carregarCarrinho() {
+        const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        const tabela = document.querySelector(".cart-table");
+        tabela.innerHTML = ""; // Limpa a tabela
+    
+        let totalGeral = 0;
+    
+        carrinho.forEach((produto, index) => {
+          const linha = document.createElement("tr");
+          linha.innerHTML = `
+            <td class="product-image">
+              <img src="${produto.imagem}" alt="${produto.nome}">
+            </td>
+            <td class="product-details">
+              <h3>${produto.nome}</h3>
+              <p>Preço: R$ ${produto.preco.toFixed(2).replace(".", ",")}</p>
+              <p>
+                Quantidade:
+                <button onclick="alterarQuantidade(${index}, -1)">-</button>
+                <span>${produto.quantidade}</span>
+                <button onclick="alterarQuantidade(${index}, 1)">+</button>
+              </p>
+              <p>Total: R$ ${(produto.preco * produto.quantidade).toFixed(2).replace(".", ",")}</p>
+              <button onclick="removerProduto(${index})" style="margin-top: 10px; background-color: red; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                Remover
+              </button>
+            </td>
+          `;
+          tabela.appendChild(linha);
+          totalGeral += produto.preco * produto.quantidade;
+        });
+    
+        // Atualiza o total na lateral
+        const totalEl = document.querySelector(".summary-total strong");
+        if (totalEl) {
+          totalEl.textContent = `R$ ${totalGeral.toFixed(2).replace(".", ",")}`;
+        }
+      }
+    
+      function removerProduto(index) {
+        let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        carrinho.splice(index, 1);
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        carregarCarrinho();
+      }
+    
+      function alterarQuantidade(index, delta) {
+        let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        if (!carrinho[index]) return;
+    
+        carrinho[index].quantidade += delta;
+    
+        // Se a quantidade for menor que 1, remove
+        if (carrinho[index].quantidade < 1) {
+          carrinho.splice(index, 1);
+        } else {
+          carrinho[index].total = carrinho[index].quantidade * carrinho[index].preco;
+        }
+    
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+        carregarCarrinho();
+      }
+    
+      document.addEventListener("DOMContentLoaded", carregarCarrinho);
+    </script>
+    
 </body>
 </html>
