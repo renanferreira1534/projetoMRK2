@@ -5,7 +5,9 @@ Desenvolvido com foco em responsividade, design moderno e boa experiência do us
 
 ## 📸 Demonstração
 
-![Home do Site](./2.png)
+![Home do Site](images/111%20(2).png)
+![Novidades do Site](images/111%20(1).png)
+![Login do Site](images/111%20(3).png)
 
 ## 🔗 Acesse
 
