@@ -18,13 +18,17 @@
     </div>
   </nav>
 
-  <header class="cabecalho">
-    <img src="images/ChatGPT Image 27 de mai. de 2025, 09_52_27.png" alt="Logo Lacoste" class="logo">
-  </header>
-
-  <section class="banner-longo">
-    <img src="images/ft.png" alt="Banner Lacoste">
-  </section>
+  <section class="hero">
+    <div class="carousel">
+        <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/ft.png"></div>
+            <div class="carousel-slide"><img src="images/3.png"> alt="Slide 2"></div>
+            <div class="carousel-slide"><img src="images/4.png" alt="Slide 3"></div>
+        </div>
+        <button class="carousel-button prev">&#10094;</button>
+        <button class="carousel-button next">&#10095;</button>
+    </div>
+</section>
 
   <section class="galeria">
     <div class="img-box">
@@ -41,5 +45,38 @@
       </a>
     </div>
   </section>
+  <!-- JavaScript do carrossel -->
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-button.next');
+    const prevButton = document.querySelector('.carousel-button.prev');
+
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    });
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+
+    // Faz o carrossel passar sozinho a cada 3 segundos
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    }, 3000); // 3000ms = 3 segundos
+
+</script>
 </body>
 </html>
