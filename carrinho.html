@@ -46,9 +46,10 @@
                 <span>Total:</span>
                 <strong>R$ 399,90</strong>
             </div>
-          <a href="finalizar.html"> 
-            <button class="finalize-btn">Finalizar Compra</button>
-          </a>   
+            <a href="finalizar.html" onclick="salvarTotalCompra()">
+              <button class="finalize-btn">Finalizar Compra</button>
+            </a>
+            
         </div>
     </aside><!--aqui termina o quadradinho do finalizar compra-->
     
@@ -117,6 +118,18 @@
       }
     
       document.addEventListener("DOMContentLoaded", carregarCarrinho);
+
+      function salvarTotalCompra() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  let total = 0;
+
+  carrinho.forEach(produto => {
+    total += produto.preco * produto.quantidade;
+  });
+
+  localStorage.setItem("totalCompra", total.toFixed(2));
+}
+
     </script>
     
 </body>

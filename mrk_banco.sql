@@ -43,6 +43,21 @@ CREATE TABLE produto (
     data_cadastro TIMESTAMP
 );
 
+create table pagamento (
+id_comprar int auto_increment primary key,
+data_pagamento DATETIME,
+formaPG varchar(1) not null,
+valorPG decimal(10,2),
+numeroCard varchar(19) not null,
+nomeCard varchar(200)not null,
+validadeCard varchar(7) not null,
+cvvCard varchar (3) not null,
+pixPG varchar(200)not null
+);
+
+
+
+
 
 
 alter table compra

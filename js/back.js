@@ -139,3 +139,79 @@ function cadastrar(){
     
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const selectPagamento = document.getElementById("pagamento");
+  const cartaoInfo = document.getElementById("cartao-info");
+  const pixInfo = document.getElementById("pix-info");
+  const campoTotal = document.getElementById("total_pagar");
+  const botaoFinalizar = document.getElementById("btn-pagar"); 
+  const camposCartao = [
+    document.getElementById("numero_cartao"),
+    document.getElementById("nome_cartao"),
+    document.getElementById("validade_cartao"),
+    document.getElementById("cvv")
+  ];
+
+  function habilitarCampos(campoArray, habilitar) {
+    campoArray.forEach(input => {
+      if (input) {
+        input.disabled = !habilitar;
+        input.required = habilitar;
+      }
+    });
+  }
+
+  if (selectPagamento) {
+    selectPagamento.addEventListener("change", function () {
+      const tipo = this.value;
+      cartaoInfo.style.display = "none";
+      pixInfo.style.display = "none";
+      habilitarCampos(camposCartao, false);
+
+      if (tipo === "1") {
+        cartaoInfo.style.display = "block";
+        habilitarCampos(camposCartao, true);
+      } else if (tipo === "2") {
+        pixInfo.style.display = "block";
+      }
+    });
+  }
+
+  // Preenche o total
+  const total = localStorage.getItem("totalCompra") || "0.00";
+  const totalFormatado = `R$ ${parseFloat(total).toFixed(2).replace(".", ",")}`;
+  if (campoTotal) campoTotal.value = totalFormatado;
+
+  // Envia o pagamento ao clicar no botão
+  if (botaoFinalizar) {
+    botaoFinalizar.addEventListener("click", function () {
+      const tipo = selectPagamento.value;
+      let forma = "";
+
+      if (tipo === "1") forma = "Cartão";
+      else if (tipo === "2") forma = "Pix";
+      else return alert("Escolha uma forma de pagamento!");
+
+      fetch("http://127.0.0.1:3000/pagamento/registrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id_compra: 10, 
+          forma_pagamento: forma,
+          status_pagamento: "Aprovado"
+        })
+      })
+        .then(res => res.json())
+        .then(dados => {
+          console.log("Pagamento registrado:", dados);
+          alert("Pagamento efetuado com sucesso!");
+        })
+        .catch(erro => {
+          console.error("Erro no pagamento:", erro);
+          alert("Erro ao processar pagamento.");
+        });
+    });
+  }
+});
