@@ -1,0 +1,127 @@
+:root {
+    --dark-bg: #1a1a1a;
+    --darker-bg: #121212;
+    --accent: #ff6b6b;
+    --text: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--darker-bg);
+    color: var(--text);
+}
+
+/* navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    background-color: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+.cabecalho {
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+}
+
+.logo {
+  height: 40px;
+}
+
+.banner-longo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  justify-content: center;
+}
+
+.img-box {
+  flex: 1 1 30%;
+  max-width: 32%;
+}
+
+.img-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* topo de menu e pesquisa  */
+.topo-nav a{
+    float: left;
+    display: block;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration:none;
+    font-size: 17px;
+   
+    
+  }
+  .topo-nav a:hover {
+    transform: scale(1.05);
+    color: var(--accent);
+    text-decoration: none;
+    transition: transform 0.5s ease;
+  }
