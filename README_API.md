@@ -37,33 +37,33 @@ Este é um projeto completo de e-commerce fictício, desenvolvido com **HTML, CS
 ```bash
 /
 ├── frontend/
-│   ├── index.html
-│   ├── login.html
-│   ├── cadastrologin.html
-│   ├── carrinho.html
-│   ├── finalizar.html
-│   ├── detalhes.html
-│   ├── lancamentos.html
-│   ├── cadastrarPD.html
-│   ├── oferta.html
-│   ├── style.css
-│   ├── style2.css
-│   ├── styles.css
-│   ├── style-cadastroPD.css
-│   ├── finalizar.css
-│   └── assets/
+│   ├── index.html                                Página inicial da loja, com destaque para produtos e carrossel
+│   ├── login.html                                Página de login para clientes já registrados
+│   ├── cadastrologin.html                        Tela de cadastro de novos usuários
+│   ├── carrinho.html                             Visualização do carrinho com produtos e total de compra
+│   ├── finalizar.html                            Etapa de checkout: preenchimento de endereço e forma de pagamento
+│   ├── detalhes.html                             Detalhes de um produto específico (imagens, descrição, etc.)
+│   ├── lancamentos.html                          Lista de novos produtos (novos lançamentos)
+│   ├── cadastrarPD.html                          Tela para cadastro de novos produtos (uso administrativo)
+│   ├── oferta.html                               Página para promoções e ofertas (ainda em teste)
+│   ├── style.css                                 Arquivos principais de estilos visuais (cores, fontes, layout)
+│   ├── style2.css                                Estilo específico do carrinho e layouts adicionais
+│   ├── styles.css                                Estilo específico do carrinho e layouts adicionais
+│   ├── style-cadastroPD.css                      Estilo específico da página de cadastro de produtos
+│   ├── finalizar.css                             Estilo da tela de finalização de compras
+│   └── assets/                                   Pasta com imagens (como prints usados no README)
 │       ├── home.png
 │       ├── detalhe.png
 │       ├── login.png
 │
 ├── backend/
-│   ├── index.js
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── .gitignore
+│   ├── index.js                                  Principal arquivo do servidor Express (rotas, conexões, lógica de API)
+│   ├── package.json                              Lista de dependências e scripts do projeto Node.js
+│   ├── package-lock.json                         Registro detalhado das versões instaladas (gerado pelo npm)
+│   ├── .gitignore                                Arquivos e pastas ignorados pelo Git (ex: node_modules)
 │
 ├── database/
-│   ├── mrk_banco.sql
+│   ├── mrk_banco.sql                             Criação de tabelas cliente, produto, compra, pagamento, com seus relacionamentos
 ```
 
 ---
@@ -91,31 +91,16 @@ Abrir qualquer arquivo HTML diretamente no navegador, ou usar Live Server no VSC
 ## 🖼️ Capturas de Tela
 
 ### Página Inicial
-![Página Inicial](assets/home.png)
+![Página Inicial](images/111%20(2).png)
 
 ### Detalhes do Produto
-![Detalhes do Produto](assets/detalhe.png)
+![Detalhes do Produto](images/111%20(1).png)
 
 ### Tela de Login
-![Login](assets/login.png)
-
-<!-- Você pode adicionar outras imagens abaixo no mesmo padrão -->
-<!-- Exemplo:
-### Carrinho
-![Carrinho](assets/carrinho.png)
- -->
-
----
-
-## 💡 Melhorias Futuras
-
-- Admin para controle de produtos
-- Integração com APIs de pagamento
-- Sessões com JWT
-- Upload de imagens para produtos
+![Login](images/111%20(3).png)
 
 ---
 
 ## 🧑‍💻 Autor
 
-Desenvolvido por **[Seu Nome Aqui]** — projeto educacional de e-commerce com Node e frontend puro.
+Desenvolvido por **[Renan ferreira e Marcos Victor]** — projeto educacional de e-commerce com Node e frontend puro.
