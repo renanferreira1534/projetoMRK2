@@ -1,3 +1,4 @@
+// LISTAR PRODUTO -----------------------
 function listar(){
     fetch("http://127.0.0.1:3000/produto/listar")
     .then((rs)=>rs.json())
@@ -19,7 +20,7 @@ function listar(){
     .catch((e)=>console.error(e))
 }
 
-
+//PESQUISAR PRODUTO -------------------------------
 function pesquisar(){
     fetch("http://127.0.0.1:3000/produto/pesquisar/"+document.getElementById("input-search").value)
     .then((rs)=>rs.json())
@@ -41,6 +42,7 @@ function pesquisar(){
     .catch((e)=>console.error(e))
 }
 
+// DETALHES DE PRODUTO ----------------------------
 function detalhes() {
     const urlParams = window.location.search;
     const id = urlParams.substring(12,urlParams.length)
@@ -95,7 +97,7 @@ function detalhes() {
   
   
 
-
+// CADASTRAR PRODUTO ----------------------------------
 function cadastrar(){
     const nProduto =document.getElementById("nome")
     const categoria =document.getElementById("categoria")
@@ -138,6 +140,8 @@ function cadastrar(){
 
     
 }
+
+// FORMA DE PAGAMENTO-----------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
   const selectPagamento = document.getElementById("pagamento");
@@ -182,6 +186,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalFormatado = `R$ ${parseFloat(total).toFixed(2).replace(".", ",")}`;
   if (campoTotal) campoTotal.value = totalFormatado;
 
+
+
   // Envia o pagamento ao clicar no botão
   if (botaoFinalizar) {
     botaoFinalizar.addEventListener("click", function () {
@@ -213,5 +219,30 @@ document.addEventListener("DOMContentLoaded", function () {
           alert("Erro ao processar pagamento.");
         });
     });
+  }
+});
+document.querySelector("form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.status === "sucesso") {
+      alert("✅ Compra finalizada com sucesso!");
+      form.reset();
+      document.getElementById("total_pagar").value = "R$ 0,00";
+    } else {
+      alert("❌ Erro ao finalizar compra: " + data.mensagem);
+    }
+  } catch (error) {
+    alert("❌ Erro na requisição: " + error.message);
   }
 });

@@ -75,7 +75,7 @@ Este é um projeto completo de e-commerce fictício, desenvolvido com **HTML, CS
 ```bash
 cd backend
 npm install
-npm start
+npm start (nodemon)
 ```
 
 Servidor: `http://127.0.0.1:3000`

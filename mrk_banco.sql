@@ -18,10 +18,16 @@ endereco varchar(50) not null,
 cidade varchar(30) not null,
 numero varchar(5) not null,
 ponto_referencia varchar(30),
-pagamento int(1),
 total_pagar decimal(10,2),
 cpf varchar(14) not null,
-telefone varchar(20) not null
+telefone varchar(20) not null,
+data_pagamento DATETIME,
+formaPG varchar(1) not null,
+numeroCard varchar(19) not null,
+nomeCard varchar(200)not null,
+validadeCard varchar(7) not null,
+cvvCard varchar (3) not null,
+pixPG varchar(200)not null
 );
 
 
@@ -42,21 +48,6 @@ CREATE TABLE produto (
     foto4 VARCHAR(255),
     data_cadastro TIMESTAMP
 );
-
-create table pagamento (
-id_comprar int auto_increment primary key,
-data_pagamento DATETIME,
-formaPG varchar(1) not null,
-valorPG decimal(10,2),
-numeroCard varchar(19) not null,
-nomeCard varchar(200)not null,
-validadeCard varchar(7) not null,
-cvvCard varchar (3) not null,
-pixPG varchar(200)not null
-);
-
-
-
 
 
 
