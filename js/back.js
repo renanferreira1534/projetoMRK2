@@ -141,14 +141,12 @@ function cadastrar() {
 
 }
 
-// FORMA DE PAGAMENTO-----------------------------------
-
 document.addEventListener("DOMContentLoaded", function () {
-  const selectPagamento = document.getElementById("pagamento");
+  const selectPagamento = document.getElementById("formaPG");
   const cartaoInfo = document.getElementById("cartao-info");
   const pixInfo = document.getElementById("pix-info");
   const campoTotal = document.getElementById("total_pagar");
-  const botaoFinalizar = document.getElementById("btn-pagar");
+  const botaoFinalizar = document.querySelector(".btn-pagar");
   const camposCartao = [
     document.getElementById("numero_cartao"),
     document.getElementById("nome_cartao"),
@@ -165,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Mostrar/esconder campos conforme forma de pagamento
   if (selectPagamento) {
     selectPagamento.addEventListener("change", function () {
       const tipo = this.value;
@@ -181,68 +180,57 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Preenche o total
+  // Preenche o total do localStorage
   const total = localStorage.getItem("totalCompra") || "0.00";
   const totalFormatado = `R$ ${parseFloat(total).toFixed(2).replace(".", ",")}`;
   if (campoTotal) campoTotal.value = totalFormatado;
 
+  // SUBMIT DO FORMULÁRIO
+  document.querySelector("form").addEventListener("submit", async function (e) {
+    e.preventDefault();
 
+    const form = e.target;
+    const formData = new FormData(form);
 
-  // Envia o pagamento ao clicar no botão
-  if (botaoFinalizar) {
-    botaoFinalizar.addEventListener("click", function () {
+    try {
+      // Envio para processar_pagamento.php
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData
+      });
+
+      const text = await response.text();
+      console.log("Resposta do servidor PHP:", text);
+      alert("✅ Compra finalizada no servidor PHP!");
+
+      // Envio para a API (localhost:3000)
       const tipo = selectPagamento.value;
       let forma = "";
 
-      if (tipo === "1") forma = "Cartão";
-      else if (tipo === "2") forma = "Pix";
+      if (tipo === "1") forma = "credito";
+      else if (tipo === "2") forma = "pix";
       else return alert("Escolha uma forma de pagamento!");
 
-     await fetch("http://127.0.0.1:3000/pagamento/registrar", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    id_compra: 10, // Pegue o id real depois
-    forma_pagamento: formData.get("pagamento") === "1" ? "Cartão" : "Pix",
-    status_pagamento: "Aprovado"
-  })
-});
-        .then(res => res.json())
-        .then(dados => {
-          console.log("Pagamento registrado:", dados);
-          alert("Pagamento efetuado com sucesso!");
+      const apiResponse = await fetch("http://127.0.0.1:3000/compra/registrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id_compra: 10, // substitua pelo ID real se necessário
+          forma_pagamento: forma,
+          status_pagamento: "Aprovado"
         })
-        .catch(erro => {
-          console.error("Erro no pagamento:", erro);
-          alert("Erro ao processar pagamento.");
-        });
-    });
-  }
-});
-document.querySelector("form").addEventListener("submit", async function (e) {
-  e.preventDefault();
+      });
 
-  const form = e.target;
-  const formData = new FormData(form);
+      const dados = await apiResponse.json();
+      console.log("Resposta da API:", dados);
+      alert("✅ Compra também registrada na API!");
 
-  try {
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: formData,
-    });
-
-    const text = await response.text();
-    console.log("Resposta do servidor:", text);
-    alert("Compra finalizada. Resposta: " + text);
-
-    if (data.status === "sucesso") {
-      alert("✅ Compra finalizada com sucesso!");
       form.reset();
       document.getElementById("total_pagar").value = "R$ 0,00";
-    } else {
-      alert("❌ Erro ao finalizar compra: " + data.mensagem);
+
+    } catch (error) {
+      console.error("Erro:", error);
+      alert("❌ Erro ao finalizar compra.");
     }
-  } catch (error) {
-    alert("❌ Erro na requisição: " + error.message);
-  }
+  });
 });

@@ -1,10 +1,16 @@
 <?php
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405); // Método não permitido
+    echo "Método não permitido.";
+    exit;
+}
+
 // Conexão com o banco
 $host = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "lojamrk"; // Substitua pelo nome real do seu banco
+$banco = "lojamrk";
 
 $conn = new mysqli($host, $usuario, $senha, $banco);
 
@@ -14,59 +20,31 @@ if ($conn->connect_error) {
 }
 
 // Recebe dados do formulário
-$cpf = $_POST['cpf'];
-$telefone = $_POST['telefone'];
-$cep = $_POST['cep'];
-$cidade = $_POST['cidade'];
-$endereco = $_POST['endereco'];
-$numero = $_POST['numero'];
-$ponto_referencia = $_POST['ponto_referencia'];
-$pagamento = $_POST['pagamento']; // 1 = cartão, 2 = pix
-$total_pagar = $_POST['total_pagar'];
-$id_produto = $_POST['id_produto'];
-$id_cliente = $_POST['id_cliente'];
+$cpf = $_POST['cpf'] ?? '';
+$telefone = $_POST['telefone'] ?? '';
+$cep = $_POST['cep'] ?? '';
+$cidade = $_POST['cidade'] ?? '';
+$endereco = $_POST['endereco'] ?? '';
+$numero = $_POST['numero'] ?? '';
+$ponto_referencia = $_POST['ponto_referencia'] ?? '';
+$pagamento = $_POST['pagamento'] ?? ''; // 1 = cartão, 2 = pix
+$total_pagar = $_POST['total_pagar'] ?? '0.00';
+$id_produto = $_POST['id_produto'] ?? 0;
+$id_cliente = $_POST['id_cliente'] ?? 0;
 
-// Dados do cartão (opcional, se for pagamento com cartão)
-$numero_cartao = $_POST['numero_cartao'] ?? null;
-$nome_cartao = $_POST['nome_cartao'] ?? null;
-$validade_cartao = $_POST['validade_cartao'] ?? null;
-$cvv = $_POST['cvv'] ?? null;
+// Campos de cartão
+$numero_cartao = $_POST['numero_cartao'] ?? '';
+$nome_cartao = $_POST['nome_cartao'] ?? '';
+$validade_cartao = $_POST['validade_cartao'] ?? '';
+$cvv = $_POST['cvv'] ?? '';
+$pixPG = ($pagamento === "2") ? "@lojamrk.com" : ''; 
 
-// Remove "R$" e formata valor
-$total_pagar = str_replace(['R$', ',', ' '], ['', '.', ''], $total_pagar);
+// Remove "R$" e substitui vírgula por ponto
+$total_pagar = str_replace(['R$', '.', ','], ['', '', '.'], $total_pagar);
+$total_pagar = floatval($total_pagar);
 
-// Query para inserir no banco
-$sql = "INSERT INTO compra (
-    cpf, telefone, cep, cidade, endereco, numero, ponto_referencia, forma_pagamento, total, 
-    id_produto, id_cliente, numero_cartao, nome_cartao, validade_cartao, cvv
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+// Define forma de pagamento para salvar: '1' = cartão, '2' = pix
+$formaPG = $pagamento;
 
-$stmt = $conn->prepare($sql);
-$stmt->bind_param(
-    "ssssssssddisssss",
-    $cpf, $telefone, $cep, $cidade, $endereco, $numero, $ponto_referencia,
-    $pagamento, $total_pagar, $id_produto, $id_cliente,
-    $numero_cartao, $nome_cartao, $validade_cartao, $cvv
-);
-
-if ($stmt->execute()) {
-    header("Location: ../confirmacao.html");
-    exit;
-} else {
-    echo "Erro ao finalizar pagamento: " . $stmt->error;
-}
-<?php
-// ... lógica de inserção no banco aqui ...
-
-header("Content-Type: application/json");
-echo json_encode([
-    "status" => "sucesso",
-    "mensagem" => "Compra registrada com sucesso."
-]);
-exit;
-
-
-
-$stmt->close();
-$conn->close();
-?>
+// Monta e executa a query
+$sql = "INSERT INTO com
