@@ -1,36 +1,72 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-header('Content-Type: application/json');
 
-$conn = new mysqli("localhost", "usuario", "senha", "nome_do_banco");
+// Conexão com o banco
+$host = "localhost";
+$usuario = "root";
+$senha = "";
+$banco = "lojamrk"; // Substitua pelo nome real do seu banco
 
+$conn = new mysqli($host, $usuario, $senha, $banco);
+
+// Verifica conexão
 if ($conn->connect_error) {
-    echo json_encode(["status" => "erro", "mensagem" => "Erro na conexão: " . $conn->connect_error]);
+    die("Erro de conexão: " . $conn->connect_error);
+}
+
+// Recebe dados do formulário
+$cpf = $_POST['cpf'];
+$telefone = $_POST['telefone'];
+$cep = $_POST['cep'];
+$cidade = $_POST['cidade'];
+$endereco = $_POST['endereco'];
+$numero = $_POST['numero'];
+$ponto_referencia = $_POST['ponto_referencia'];
+$pagamento = $_POST['pagamento']; // 1 = cartão, 2 = pix
+$total_pagar = $_POST['total_pagar'];
+$id_produto = $_POST['id_produto'];
+$id_cliente = $_POST['id_cliente'];
+
+// Dados do cartão (opcional, se for pagamento com cartão)
+$numero_cartao = $_POST['numero_cartao'] ?? null;
+$nome_cartao = $_POST['nome_cartao'] ?? null;
+$validade_cartao = $_POST['validade_cartao'] ?? null;
+$cvv = $_POST['cvv'] ?? null;
+
+// Remove "R$" e formata valor
+$total_pagar = str_replace(['R$', ',', ' '], ['', '.', ''], $total_pagar);
+
+// Query para inserir no banco
+$sql = "INSERT INTO compra (
+    cpf, telefone, cep, cidade, endereco, numero, ponto_referencia, forma_pagamento, total, 
+    id_produto, id_cliente, numero_cartao, nome_cartao, validade_cartao, cvv
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param(
+    "ssssssssddisssss",
+    $cpf, $telefone, $cep, $cidade, $endereco, $numero, $ponto_referencia,
+    $pagamento, $total_pagar, $id_produto, $id_cliente,
+    $numero_cartao, $nome_cartao, $validade_cartao, $cvv
+);
+
+if ($stmt->execute()) {
+    header("Location: ../confirmacao.html");
     exit;
-}
-
-// Proteção básica contra SQL Injection
-$cpf = $conn->real_escape_string($_POST['cpf'] ?? '');
-$telefone = $conn->real_escape_string($_POST['telefone'] ?? '');
-$cep = $conn->real_escape_string($_POST['cep'] ?? '');
-$cidade = $conn->real_escape_string($_POST['cidade'] ?? '');
-$endereco = $conn->real_escape_string($_POST['endereco'] ?? '');
-$numero = $conn->real_escape_string($_POST['numero'] ?? '');
-$ponto_referencia = $conn->real_escape_string($_POST['ponto_referencia'] ?? '');
-$pagamento = $conn->real_escape_string($_POST['pagamento'] ?? '');
-$id_produto = (int) ($_POST['id_produto'] ?? 0);
-$id_cliente = (int) ($_POST['id_cliente'] ?? 0);
-
-$sql = "INSERT INTO compra (cpf, telefone, cep, cidade, endereco, numero, ponto_referencia, pagamento, id_produto, id_cliente)
-        VALUES ('$cpf', '$telefone', '$cep', '$cidade', '$endereco', '$numero', '$ponto_referencia', '$pagamento', $id_produto, $id_cliente)";
-
-if ($conn->query($sql)) {
-    echo json_encode(["status" => "sucesso"]);
 } else {
-    echo json_encode(["status" => "erro", "mensagem" => $conn->error]);
+    echo "Erro ao finalizar pagamento: " . $stmt->error;
 }
+<?php
+// ... lógica de inserção no banco aqui ...
 
+header("Content-Type: application/json");
+echo json_encode([
+    "status" => "sucesso",
+    "mensagem" => "Compra registrada com sucesso."
+]);
+exit;
+
+
+
+$stmt->close();
 $conn->close();
-
 ?>
