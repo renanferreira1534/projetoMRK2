@@ -1,0 +1,49 @@
+<!-- recuperarsenha.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Recuperar Senha</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="navegacao">
+  <nav class="navbar">
+    <a href="index.html" class="logo">IMPORTS MRK</a>
+    <div class="topo-nav">
+      <a href="login.html">Fazer Login</a>
+    </div>
+  </nav>
+
+  <main class="cont">
+    <form id="recoverForm">
+      <h1>Recuperar Senha</h1>
+      <div class="input-box">
+        <input type="email" name="email" placeholder="Digite seu e-mail" required>
+      </div>
+      <button type="submit">Enviar nova senha</button>
+      <div id="msg" style="margin-top: 10px;"></div>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById("recoverForm");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = form.email.value;
+
+      const response = await fetch("http://127.0.0.1:3000/recuperar-senha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+
+      const result = await response.json();
+      msg.style.color = response.ok ? "green" : "red";
+      msg.textContent = result.msg;
+    });
+  </script>
+</body>
+</html>
