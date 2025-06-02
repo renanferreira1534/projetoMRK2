@@ -146,13 +146,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const cartaoInfo = document.getElementById("cartao-info");
   const pixInfo = document.getElementById("pix-info");
   const campoTotal = document.getElementById("total_pagar");
-  const botaoFinalizar = document.querySelector(".btn-pagar");
+  const botaoFinalizar = document.querySelector("btn-pagar");
   const camposCartao = [
     document.getElementById("numero_cartao"),
     document.getElementById("nome_cartao"),
     document.getElementById("validade_cartao"),
     document.getElementById("cvv")
   ];
+  
 
   function habilitarCampos(campoArray, habilitar) {
     campoArray.forEach(input => {
@@ -200,8 +201,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       const text = await response.text();
-      console.log("Resposta do servidor PHP:", text);
-      alert("✅ Compra finalizada no servidor PHP!");
+      console.log("Resposta do servidor :", text);
+      alert("✅ Compra finalizada !");
 
       // Envio para a API (localhost:3000)
       const tipo = selectPagamento.value;
@@ -215,15 +216,29 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          id_compra: 10, // substitua pelo ID real se necessário
-          forma_pagamento: forma,
-          status_pagamento: "Aprovado"
+
+          formaPG: forma,
+          cpf: document.getElementById("cpf").value,
+          telefone: document.getElementById("telefone").value,
+          cep: document.getElementById("cep").value,
+          cidade: document.getElementById("cidade").value,
+          endereco: document.getElementById("endereco").value,
+          numero: document.getElementById("numero").value,
+          ponto_referencia: document.getElementById("ponto_referencia").value,
+          total_pagar: document.getElementById("total_pagar").value,
+          numeroCard: document.getElementById("numero_cartao").value,
+          nomeCard: document.getElementById("nome_cartao").value,
+          validadeCard: document.getElementById("validade_cartao").value,
+          cvvCard: document.getElementById("cvv").value,
+          pixPG: document.getElementById("pix-info").value
+          
+          
         })
       });
 
       const dados = await apiResponse.json();
       console.log("Resposta da API:", dados);
-      alert("✅ Compra também registrada na API!");
+     
 
       form.reset();
       document.getElementById("total_pagar").value = "R$ 0,00";
