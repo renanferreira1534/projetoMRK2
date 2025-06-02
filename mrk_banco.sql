@@ -6,7 +6,7 @@ id_cliente int auto_increment primary key,
 nome varchar(50) not null,
 usuario varchar(15) not null,
 email varchar(50) not null,
-senha varchar (10)not null
+senha varchar (200)not null
 );
 
 create table compra(
@@ -22,7 +22,7 @@ total_pagar decimal(10,2),
 cpf varchar(14) not null,
 telefone varchar(20) not null,
 data_pagamento DATETIME,
-formaPG varchar(1) not null,
+formaPG varchar(10) not null,
 numeroCard varchar(19) not null,
 nomeCard varchar(200)not null,
 validadeCard varchar(7) not null,
@@ -30,15 +30,13 @@ cvvCard varchar (3) not null,
 pixPG varchar(200)not null
 );
 
-
-
 CREATE TABLE produto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     categoria VARCHAR(50),
     tamanho VARCHAR(10),
     genero VARCHAR(20),
-    preco DECIMAL(10,2),
+    preco DECIMAL(10 , 2 ),
     estoque INT,
     descricao TEXT,
     imagem VARCHAR(255),
@@ -48,7 +46,6 @@ CREATE TABLE produto (
     foto4 VARCHAR(255),
     data_cadastro TIMESTAMP
 );
-
 
 
 alter table compra
