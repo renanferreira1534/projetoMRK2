@@ -274,25 +274,24 @@
 </nav>
 
 <div class="ver-produto">
+  <!-- Coluna da esquerda: imagem principal + miniaturas -->
   <div class="col-2">
-<!-- .col-2 (Imagem principal + miniaturas) -->
-<div class="col-2">
-  <img src="" alt="Imagem do produto" id="ProdutoImg" />
-  <div class="img-min" id="galeria-imgs"></div>
-</div>
-
-
+    <img src="" alt="Imagem do produto" id="ProdutoImg" />
+    <div class="img-min" id="galeria-imgs">
+      <img src="img1.jpg" onclick="mudarImagem(this)" alt="Mini 1" />
+      <img src="img2.jpg" onclick="mudarImagem(this)" alt="Mini 2" />
+      <img src="img3.jpg" onclick="mudarImagem(this)" alt="Mini 3" />
+      <img src="img4.jpg" onclick="mudarImagem(this)" alt="Mini 4" />
+    </div>
   </div>
 
+  <!-- Coluna da direita: infos do produto -->
   <div class="col-3">
-    <!-- Dentro da col-3 -->
-<p id="categoria">Categoria: </p>
-<h1 id="nome-produto">Nome do Produto</h1>
-<h4 id="preco-produto">R$ 0,00</h4>
-<h3>Descrição</h3>
-<p id="descricao-produto">Descrição do produto aqui.</p>
-
-
+    <p id="categoria">Categoria: </p>
+    <h1 id="nome-produto">Nome do Produto</h1>
+    <h4 id="preco-produto">R$ 0,00</h4>
+    <h3>Descrição</h3>
+    <p id="descricao-produto">Descrição do produto aqui.</p>
 
     <form>
       <select>
@@ -307,6 +306,9 @@
       <input type="number" value="1" min="1" />
       <button type="button" class="bnt" onclick="adicionarAoCarrinho()">Adicionar ao carrinho</button>
     </form>
+  </div>
+
+
     
     
   </div>
@@ -353,6 +355,24 @@
   function continuarComprando() {
     window.location.href = "index.html";
   }
+
+  function criarMiniaturas(imgs) {
+  const galeria = document.getElementById("galeria-imgs");
+  galeria.innerHTML = "";
+
+  imgs.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Miniatura";
+    img.onclick = () => mudarImagem(img);
+    galeria.appendChild(img);
+  });
+}
+
+function mudarImagem(el) {
+  document.getElementById("ProdutoImg").src = el.src;
+}
+
 </script>
 
     

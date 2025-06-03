@@ -28,9 +28,9 @@ function pesquisar() {
       const product_grid = document.getElementsByClassName("product-grid")[0];
       let produtos = "";
       dados.msg.map((prod) => {
-        produtos += `<a href="detalhes.html?id_produto=${prod.id_produto}">
+        produtos += `<a href="detalhes.html?id_produto=${prod.id}">
         <div class="product-card scroll-animation">
-                <img src="${prod.foto}" class="product-image" alt="conjuntonike">
+                <img src="${prod.imagem}" class="product-image" alt="conjuntonike">
                 <div class="product-info">
                     <h3 class="product-title">${prod.nome}</h3>
                     <p class="product-price">${prod.preco}</p>
@@ -41,6 +41,8 @@ function pesquisar() {
     })
     .catch((e) => console.error(e));
 }
+
+
 
 // DETALHES DE PRODUTO ----------------------------
 function detalhes() {
@@ -131,16 +133,16 @@ function cadastrar() {
     .catch((error) => console.error(error));
 }
 
+
+
+
 // PAGAMENTO ----------------------------------
 document.addEventListener("DOMContentLoaded", function () {
   const selectPagamento = document.getElementById("formaPG");
   const cartaoInfo = document.getElementById("cartao-info");
   const pixInfo = document.getElementById("pix-info");
   const campoTotal = document.getElementById("total_pagar");
-<<<<<<< HEAD
-  const botaoFinalizar = document.querySelector("btn-pagar");
-=======
->>>>>>> aa8851d13bea02f3eca51da25cded4a79ec8eac4
+  const bnt_pagar = document.querySelector("btn-pagar");
   const camposCartao = [
     document.getElementById("numero_cartao"),
     document.getElementById("nome_cartao"),
@@ -191,15 +193,11 @@ document.addEventListener("DOMContentLoaded", function () {
           body: formData
         });
 
-<<<<<<< HEAD
+
       const text = await response.text();
       console.log("Resposta do servidor :", text);
-      alert("✅ Compra finalizada !");
-=======
-        const text = await response.text();
-        console.log("Resposta do servidor PHP:", text);
-        alert("✅ Compra finalizada no servidor PHP!");
->>>>>>> aa8851d13bea02f3eca51da25cded4a79ec8eac4
+      // alert("✅ Compra finalizada !");
+
 
         const tipo = selectPagamento.value;
         let forma = "";
@@ -208,7 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
         else if (tipo === "2") forma = "pix";
         else return alert("Escolha uma forma de pagamento!");
 
-<<<<<<< HEAD
       const apiResponse = await fetch("http://127.0.0.1:3000/compra/registrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -236,28 +233,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const dados = await apiResponse.json();
       console.log("Resposta da API:", dados);
      
-=======
-        const apiResponse = await fetch("http://127.0.0.1:3000/compra/registrar", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            id_compra: 10, // Substituir pelo ID real se necessário
-            forma_pagamento: forma,
-            status_pagamento: "Aprovado"
-          })
-        });
-
-        const dados = await apiResponse.json();
-        console.log("Resposta da API:", dados);
-        alert("✅ Compra também registrada na API!");
->>>>>>> aa8851d13bea02f3eca51da25cded4a79ec8eac4
 
         form.reset();
         document.getElementById("total_pagar").value = "R$ 0,00";
 
       } catch (error) {
         console.error("Erro:", error);
-        alert("❌ Erro ao finalizar compra.");
+        // alert("❌ Erro ao finalizar compra.");
       }
     });
   }
