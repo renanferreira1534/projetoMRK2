@@ -234,10 +234,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
         form.reset();
         document.getElementById("total_pagar").value = "R$ 0,00";
+        window.location.href = "index.html";  
+        alert("compra bem sucedida aguarde o email")
+        
+        form.reset();
+      document.getElementById("total_pagar").value = "R$ 0,00";
+
+      // Limpa o carrinho e o total
+      localStorage.removeItem("carrinho");
+      localStorage.removeItem("totalCompra");
+
+      // Redireciona para a página inicial
+      window.location.href = "index.html";
+
 
       } catch (error) {
         console.error("Erro:", error);
         // alert("❌ Erro ao finalizar compra.");
+
+        
       }
     });
   }
