@@ -28,9 +28,9 @@ function pesquisar() {
       const product_grid = document.getElementsByClassName("product-grid")[0];
       let produtos = "";
       dados.msg.map((prod) => {
-        produtos += `<a href="detalhes.html?id_produto=${prod.id_produto}">
+        produtos += `<a href="detalhes.html?id_produto=${prod.id}">
         <div class="product-card scroll-animation">
-                <img src="${prod.foto}" class="product-image" alt="conjuntonike">
+                <img src="${prod.imagem}" class="product-image" alt="conjuntonike">
                 <div class="product-info">
                     <h3 class="product-title">${prod.nome}</h3>
                     <p class="product-price">${prod.preco}</p>
@@ -41,6 +41,8 @@ function pesquisar() {
     })
     .catch((e) => console.error(e));
 }
+
+
 
 // DETALHES DE PRODUTO ----------------------------
 function detalhes() {
@@ -131,13 +133,16 @@ function cadastrar() {
     .catch((error) => console.error(error));
 }
 
+
+
+
 // PAGAMENTO ----------------------------------
 document.addEventListener("DOMContentLoaded", function () {
   const selectPagamento = document.getElementById("formaPG");
   const cartaoInfo = document.getElementById("cartao-info");
   const pixInfo = document.getElementById("pix-info");
   const campoTotal = document.getElementById("total_pagar");
-  const botaoFinalizar = document.querySelector("btn-pagar");
+  const bnt_pagar = document.querySelector("btn-pagar");
   const camposCartao = [
     document.getElementById("numero_cartao"),
     document.getElementById("nome_cartao"),
@@ -190,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const text = await response.text();
       console.log("Resposta do servidor :", text);
-      alert("✅ Compra finalizada !");
+      // alert("✅ Compra finalizada !");
 
 
         const tipo = selectPagamento.value;
@@ -232,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       } catch (error) {
         console.error("Erro:", error);
-        alert("❌ Erro ao finalizar compra.");
+        // alert("❌ Erro ao finalizar compra.");
       }
     });
   }
