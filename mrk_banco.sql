@@ -11,7 +11,7 @@ senha varchar (200)not null
 
 create table compra(
 id_compra int auto_increment primary key,
-id_produto int ,
+id int ,
 id_cliente int,
 cep varchar(10) not null,
 endereco varchar(50) not null,
