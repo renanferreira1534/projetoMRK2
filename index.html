@@ -12,6 +12,10 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+   
+
+
 </head>
 <body onload="listar()">
 
@@ -27,7 +31,7 @@
        
         <a class="lancamentos" href="novidades.html">Novidades</a> 
         <a class="icon1" href="carrinho.html"><img src="images/shopping.png"></a>
-        <a class="icon2" href="login.html"> <img src="images/perfil.png"></a>
+        <a class="icon2" href="login.html"> <img src="images/perfil.png" id="login2"></a>
     </div>
     </nav>
 
@@ -57,7 +61,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Loja MRK</h3>
-                <p>Loja streetwear direcionada para marcas Importadas e Nacionais</p>
+                <p>Loja Stret wer direcionada para marcas Importadas e Nacionais.</p>
             </div>
             
             <div class="footer-section">
@@ -104,6 +108,13 @@
             updateCarousel();
         }, 3000); // 3000ms = 3 segundos
 
+    </script>
+     <script>
+        let logado = window.localStorage.getItem("logado");
+        if(logado=="Logado!"){
+            document.getElementById("login2").style.display="none"
+        }
+        
     </script>
     <script src="js/back.js"></script>
 </body>

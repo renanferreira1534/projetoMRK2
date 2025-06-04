@@ -70,24 +70,28 @@
                 });
 
                 const result = await response.json();
-
+                
                 if (response.ok) {
                     msg.style.color = 'green';
                     msg.textContent = 'Login realizado com sucesso! Redirecionando...';
-
-                    // Exemplo: redirecionar para outra página após 2s
-                    setTimeout(() => {
+                    
+                    window.localStorage.setItem("logado","Logado!");
+            // Exemplo: redirecionar para outra página após 2s
+            setTimeout(() => {
                         window.location.href = 'index.html'; // ajuste para sua página
                     }, 2000);
 
                 } else {
                     msg.style.color = 'red';
                     msg.textContent = result.msg || 'Usuário ou senha inválidos.';
+                    return;
                 }
             } catch (error) {
                 msg.style.color = 'red';
                 msg.textContent = 'Erro na comunicação com o servidor.';
+                return;
             }
+            
         });
     </script>
 </body>
