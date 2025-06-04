@@ -66,6 +66,12 @@ Este é um projeto completo de e-commerce fictício, desenvolvido com **HTML, CS
 │   ├── mrk_banco.sql                             Criação de tabelas cliente, produto, compra, pagamento, com seus relacionamentos
 ```
 
+
+### Modelo logico
+![Login](images/modeloconceitual.jfif)
+---
+### Normalização
+![Login](images/modeloconceitual2.jfif)
 ---
 
 ## ▶️ Como Executar
