@@ -40,13 +40,43 @@
                     <i class="bx bxs-user"></i>
                 </div>
             
-                <button type="submit">Cadastrar</button>
+                <form id="formCadastro">
+                    ...
+                    <button type="submit">Cadastrar</button>
+                  </form>
             </form>
-            
 
 
-            
-        
     </main>
+    <script>
+        const form = document.getElementById('formCadastro');
+      
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault(); // evita envio padrão
+      
+          const data = {
+            email: form.email.value,
+            senha: form.senha.value,
+            usuario: form.usuario.value
+          };
+      
+          const response = await fetch('http://127.0.0.1:3000/cadastrar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+      
+          const result = await response.json();
+       
+      
+          if (response.ok) {
+            alert(result.msg || "Cadastro feito com sucesso!");
+            window.location.href = "index.html"; // redireciona para a página principal
+          } else {
+            alert(result.erro || "Erro ao cadastrar");
+          }
+          alert(" CADASTRO ")
+        });
+      </script>
 </body>
 </html>
