@@ -24,6 +24,19 @@ Este é um projeto completo de e-commerce fictício, desenvolvido com **HTML, CS
 
 ---
 
+## 🖼️ Capturas de Tela
+
+### Página Inicial
+![Página Inicial](images/Print1.png)
+
+### Tela Novidades
+![Detalhes do Produto](images/Print2.png)
+
+### Tela de Login
+![Login](images/Print3.png)
+
+---
+
 ## ⚙️ Tecnologias Utilizadas
 
 **Frontend**: HTML, CSS, JS puro, Font Awesome, LocalStorage  
@@ -66,6 +79,18 @@ Este é um projeto completo de e-commerce fictício, desenvolvido com **HTML, CS
 │   ├── mrk_banco.sql                             Criação de tabelas cliente, produto, compra, pagamento, com seus relacionamentos
 ```
 
+### Primeira Rota
+![Diagrama](images/PrimeiraRota.png)
+### Segunda Rota
+![Diagrama](images/SegundaRota.png)
+### Rota Produto
+![Diagrama](images/RotaProduto.png)
+### Rota Login
+![Diagrama](images/RotaLogin.png)
+### Rota Compra
+![Diagrama](images/RotaCompra.png)
+### Rota Recuperar Senha
+![Diagrama](images/RotaRecuperarSennha.png)
 
 ### Modelo logico
 ![Login](images/modeloconceitual.jfif)
@@ -140,7 +165,7 @@ references produto(id);
 
 ```
 ### Diagrama do relacionamento MRK
-![Login](images/diagrama.jfif)
+![Diagrama](images/diagrama.jfif)
 
 ## ▶️ Como Executar
 
@@ -159,19 +184,6 @@ Servidor: `http://127.0.0.1:3000`
 ### Frontend
 
 Abrir qualquer arquivo HTML diretamente no navegador, ou usar Live Server no VSCode.
-
----
-
-## 🖼️ Capturas de Tela
-
-### Página Inicial
-![Página Inicial](images/111%20(2).png)
-
-### Detalhes do Produto
-![Detalhes do Produto](images/111%20(1).png)
-
-### Tela de Login
-![Login](images/111%20(3).png)
 
 ---
 
