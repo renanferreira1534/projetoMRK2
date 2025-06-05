@@ -85,7 +85,7 @@ Este é um projeto completo de e-commerce fictício, desenvolvido com **HTML, CS
 ### Rota Produto
 ![Produto](images/RotaProduto.png)
 ### Rota Login
-![Login](images/RotaLogin.png)
+![Rota](images/RotaLogin.png)
 ### Rota Compra
 ![Compra](images/RotaCompra.png)
 ### Rota Recuperar Senha
