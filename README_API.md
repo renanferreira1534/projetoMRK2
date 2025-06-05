@@ -14,7 +14,6 @@ Este é um projeto completo de e-commerce fictício, desenvolvido com **HTML, CS
 - Cadastro e login de usuários (`cadastrologin.html`, `login.html`)
 - Adição de produtos ao carrinho (`carrinho.html`) com `localStorage`
 - Finalização de compra com formulário e escolha de pagamento (`finalizar.html`)
-- Layout responsivo com arquivos de estilo separados
 
 ### 🔙 Backend (Node.js + Express + MySQL)
 - API RESTful com rotas para produtos, clientes, login e pedidos
@@ -80,23 +79,23 @@ Este é um projeto completo de e-commerce fictício, desenvolvido com **HTML, CS
 ```
 
 ### Primeira Rota
-![Diagrama](images/PrimeiraRota.png)
+![Primeira](images/PrimeiraRota.png)
 ### Segunda Rota
-![Diagrama](images/SegundaRota.png)
+![Segunda](images/SegundaRota.png)
 ### Rota Produto
-![Diagrama](images/RotaProduto.png)
+![Produto](images/RotaProduto.png)
 ### Rota Login
-![Diagrama](images/RotaLogin.png)
+![Login](images/RotaLogin.png)
 ### Rota Compra
-![Diagrama](images/RotaCompra.png)
+![Compra](images/RotaCompra.png)
 ### Rota Recuperar Senha
-![Diagrama](images/RotaRecuperarSennha.png)
+![Senha](images/RotaRecuperarSennha.png)
 
 ### Modelo logico
-![Login](images/modeloconceitual.jfif)
+![Modelo Logico](images/modeloconceitual.jfif)
 ---
 ### Normalização
-![Login](images/modeloconceitual2.jfif)
+![Normalização](images/modeloconceitual2.jfif)
 ---
 
 ## 🏦 Sql Banco de dados 
